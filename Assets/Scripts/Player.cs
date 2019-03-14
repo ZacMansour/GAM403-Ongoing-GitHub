@@ -50,14 +50,11 @@ public class Player : MonoBehaviour
             AddToHealth(150);
             Debug.Log("Big Health Up");
         }
-    }
 
-    void Movement()
-    {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float moveHorizontal = (Input.GetAxis("Horizontal"));
+        float moveVertical = (Input.GetAxis("Vertical"));
 
-        transform.Translate(new Vector3(h, 0, v) * speed);
+        transform.Translate(new Vector3(moveHorizontal, 0.0f, moveVertical) * speed);
     }
 
     //both mean the same thing but += is just shorter
@@ -73,6 +70,22 @@ public class Player : MonoBehaviour
     void AddToHealth(int healthModifier)
     {
         health += healthModifier;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entered the trigger zone");
+        GetComponent<Renderer>().material.color = Color.yellow;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        health -= 1;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 
 }
