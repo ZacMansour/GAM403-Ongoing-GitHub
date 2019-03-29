@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
-    public GameObject[] weapons;   
+    public GameObject[] weapons;
+    public GameObject[] projectiles;
+    public GameObject currentProjectile;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(weapons.Length);
+        //Debug.Log(weapons.Length);
         ChangeWeapons(0);
     }
 
@@ -31,6 +33,7 @@ public class Weapons : MonoBehaviour
 
     void ChangeWeapons(int weaponNumber)
     {
+        currentProjectile = projectiles[weaponNumber];
         for(int i = 0; i <weapons.Length; i++)
         {
             weapons[i].SetActive(false);

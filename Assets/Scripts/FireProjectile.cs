@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireProjectile : MonoBehaviour
 {
-    public GameObject projectilePrefab;
+    public Weapons weapons;
     public Transform firingPoint;
 
     // Update is called once per frame
@@ -12,7 +12,7 @@ public class FireProjectile : MonoBehaviour
     {
        if(Input.GetButtonDown("Fire1"))
         {
-            Instantiate(projectilePrefab,firingPoint.position,firingPoint.rotation);
+            Instantiate(weapons.currentProjectile,firingPoint.position,firingPoint.rotation);
         }
     }
 }
