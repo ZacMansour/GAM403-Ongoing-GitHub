@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     GameObject player;
     public float dist;
+    NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        agent = GetComponent<NavMeshAgent>();
+        agent.SetDestination(player.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.transform);
+        //transform.LookAt(player.transform);
 
         dist = Vector3.Distance(transform.position, player.transform.position);
 
@@ -24,6 +28,7 @@ public class Enemy : MonoBehaviour
         if (dist <= 15)
         {
             transform.LookAt(player.transform);
+            agent.SetDestination(player.transform.position);
         }
 
         //if player is closer than three units change colour to blue
